@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cairo", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply text-gray-800 bg-gray-50;
+    font-family: 'Cairo', sans-serif;
+  }
+}
+
+/* Dark mode generic overrides for content boxes */
+html.dark .bg-amber-50, html.dark .bg-sky-50, html.dark .bg-emerald-50, html.dark .bg-rose-50, html.dark .bg-indigo-50, html.dark .bg-teal-50, html.dark .bg-orange-50 {
+  background-color: var(--color-gray-800);
+  border-color: var(--color-gray-700);
+}
+html.dark .text-amber-800, html.dark .text-sky-800, html.dark .text-emerald-800, html.dark .text-rose-800, html.dark .text-indigo-800, html.dark .text-teal-800, html.dark .text-orange-800 {
+  color: var(--color-gray-200);
+}
+html.dark .bg-white {
+  background-color: var(--color-gray-800);
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: white !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .page-break {
+    break-before: page;
+  }
+  .prevent-break {
+    break-inside: avoid;
+  }
+  
+  /* Reset overflow for print */
+  #root, body, html {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+.print-only {
+  display: none;
+}
