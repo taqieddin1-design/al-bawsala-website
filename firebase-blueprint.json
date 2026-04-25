@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "UserProgress": {
+      "title": "UserProgress",
+      "description": "Tracks which sections a user has completed.",
+      "type": "object",
+      "properties": {
+        "completedSections": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of section IDs the user has completed."
+        },
+        "updatedAt": { "type": "string", "format": "timestamp" }
+      },
+      "required": ["completedSections"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "A user-submitted comment on the site.",
+      "type": "object",
+      "properties": {
+        "text": { "type": "string", "maxLength": 1000 },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "createdAt": { "type": "string", "format": "timestamp" }
+      },
+      "required": ["text", "userId", "userName", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/progress/{userId}": {
+      "schema": "UserProgress",
+      "description": "Stores completion state for each user"
+    },
+    "/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Global comments collection"
+    }
+  }
+}
